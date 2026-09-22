@@ -295,6 +295,115 @@
       .install-btn { width: 100%; }
     }
 
+  
+    .flow-image-link {
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-in;
+      border-radius: 14px;
+    }
+
+    .image-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, .84);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+
+    .image-lightbox.open {
+      display: flex;
+    }
+
+    .image-lightbox-shell {
+      position: relative;
+      width: min(100%, 980px);
+      max-height: 94vh;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .image-lightbox-inner {
+      width: 100%;
+      max-height: calc(94vh - 54px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-lightbox img {
+      display: block;
+      max-width: 100%;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 14px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.45);
+      background: #fff;
+    }
+
+    .lightbox-close {
+      position: relative;
+      top: auto;
+      right: auto;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 999px;
+      background: #fff;
+      color: #111;
+      font: inherit;
+      font-size: 25px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+      display: grid;
+      place-items: center;
+      z-index: 2;
+    }
+
+    body.lightbox-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 560px) {
+      .image-lightbox {
+        padding: 12px;
+      }
+
+      .image-lightbox-shell {
+        width: 100%;
+        max-height: 94vh;
+        gap: 8px;
+      }
+
+      .image-lightbox-inner {
+        width: 100%;
+        max-height: calc(94vh - 48px);
+      }
+
+      .image-lightbox img {
+        max-height: calc(94vh - 48px);
+        border-radius: 10px;
+      }
+
+      .lightbox-close {
+        width: 40px;
+        height: 40px;
+        background: rgba(255,255,255,.94);
+      }
+    }
+
   </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -363,14 +472,14 @@
           <p data-i18n="flowVisualText">A visual guide showing the two main paths: cashless treatment at an APA network facility, or pay first and submit a claim when cashless service is not available.</p>
         </div>
         <div class="flow-image-wrap">
-          <a class="flow-image-link" href="assets/happy_5_insurance_guide.png" target="_blank" rel="noopener">
+          <button class="flow-image-link flow-preview-trigger" type="button" aria-label="Preview insurance flow infographic">
             <img
               class="flow-image"
               src="assets/happy_5_insurance_guide.png"
               alt="APA Happy 5 insurance use flow showing cashless treatment and reimbursement claim steps"
               loading="lazy"
             />
-          </a>
+          </button>
           <div class="flow-hint" data-i18n="flowVisualHint">Tap the image to open it full size.</div>
         </div>
       </section>
@@ -412,6 +521,20 @@
     </div>
   </main>
 
+
+  <div id="imageLightbox" class="image-lightbox" role="dialog" aria-modal="true" aria-label="Insurance flow infographic preview" aria-hidden="true">
+    <div class="image-lightbox-shell">
+      <button id="lightboxClose" class="lightbox-close" type="button" aria-label="Close preview">×</button>
+      <div class="image-lightbox-inner">
+        <img
+          id="lightboxImage"
+          src="assets/happy_5_insurance_guide.png"
+          alt="APA Happy 5 insurance use flow showing cashless treatment and reimbursement claim steps"
+        />
+      </div>
+    </div>
+  </div>
+
   <footer class="wrap">
     <strong data-i18n="footerTitle">APA Happy 5 quick guide</strong><br />
     <span data-i18n="footerText">Coverage values are summarized from the issued policy schedule. This page intentionally excludes personal policy numbers, ID details, signatures, and other private information. For final eligibility or claim approval, confirm with APA. Last updated: 22 Sep 2026.</span>
@@ -439,7 +562,7 @@
         cashless5: 'APA pays eligible covered costs directly up to your policy limits. You pay excluded or excess amounts.',
         flowVisualTitle: '🧭 Insurance use flow',
         flowVisualText: 'A visual guide showing the two main paths: cashless treatment at an APA network facility, or pay first and submit a claim when cashless service is not available.',
-        flowVisualHint: 'Tap the image to open it full size.',
+        flowVisualHint: 'Tap the image to preview it full size.',
         normalSickness: '🤒 Normal sickness',
         normalSicknessText: 'For fever, flu, sore throat, stomach problems, headache, minor infection, and similar issues, start with an APA network clinic or hospital and ask for cashless service.',
         accidentTitle: '🛵 Accident',
@@ -474,7 +597,7 @@
         cashless5: 'APA ຈ່າຍຄ່າຮັກສາທີ່ຄຸ້ມຄອງໃຫ້ໂຮງໝໍໂດຍກົງ ພາຍໃນວົງເງິນຂອງກົມປະກັນ. ສ່ວນທີ່ບໍ່ຄຸ້ມຄອງ ຫຼື ເກີນວົງເງິນ ທ່ານຕ້ອງຈ່າຍເອງ.',
         flowVisualTitle: '🧭 ຂັ້ນຕອນການໃຊ້ປະກັນໄພ',
         flowVisualText: 'ຮູບພາບສະຫຼຸບ 2 ແນວທາງຫຼັກ: ໃຊ້ Cashless ທີ່ໂຮງໝໍ/ຄລີນິກໃນເຄືອຂ່າຍ APA ຫຼື ຈ່າຍກ່ອນແລ້ວຍື່ນເຄລມ ເມື່ອບໍ່ສາມາດໃຊ້ Cashless ໄດ້.',
-        flowVisualHint: 'ແຕະທີ່ຮູບເພື່ອເປີດເບິ່ງຂະໜາດເຕັມ.',
+        flowVisualHint: 'ແຕະທີ່ຮູບເພື່ອເບິ່ງຮູບຂະໜາດເຕັມໃນໜ້ານີ້.',
         normalSickness: '🤒 ເຈັບປ່ວຍທົ່ວໄປ',
         normalSicknessText: 'ສຳລັບໄຂ້, ໄຂ້ຫວັດ, ເຈັບຄໍ, ບັນຫາກະເພາະອາຫານ, ເຈັບຫົວ, ການຕິດເຊື້ອເບົາໆ ແລະ ອາການຄ້າຍກັນ ໃຫ້ເລີ່ມທີ່ຄລີນິກ ຫຼື ໂຮງໝໍໃນເຄືອຂ່າຍ APA ແລະ ແຈ້ງຂໍໃຊ້ Cashless.',
         accidentTitle: '🛵 ອຸບັດເຫດ',
@@ -567,6 +690,41 @@
         navigator.serviceWorker.register('/sw.js').catch(() => {});
       });
     }
+
+
+    // In-page infographic preview
+    const previewTrigger = document.querySelector('.flow-preview-trigger');
+    const imageLightbox = document.getElementById('imageLightbox');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    function openImagePreview() {
+      if (!imageLightbox) return;
+      imageLightbox.classList.add('open');
+      imageLightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lightbox-open');
+      lightboxClose?.focus();
+    }
+
+    function closeImagePreview() {
+      if (!imageLightbox) return;
+      imageLightbox.classList.remove('open');
+      imageLightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lightbox-open');
+      previewTrigger?.focus();
+    }
+
+    previewTrigger?.addEventListener('click', openImagePreview);
+    lightboxClose?.addEventListener('click', closeImagePreview);
+
+    imageLightbox?.addEventListener('click', event => {
+      if (event.target === imageLightbox) closeImagePreview();
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && imageLightbox?.classList.contains('open')) {
+        closeImagePreview();
+      }
+    });
 
   </script>
 </body>
