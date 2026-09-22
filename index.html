@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0f766e" />
+  <meta name="description" content="A mobile-friendly bilingual English and Lao quick guide for APA Happy 5 health insurance coverage." />
+  <title>APA Happy 5 — Insurance Quick Guide</title>
+  <style>
+    :root {
+      --bg: #f6f8f7;
+      --card: #ffffff;
+      --text: #14201d;
+      --muted: #5d6d68;
+      --brand: #0f766e;
+      --brand-dark: #0b5f59;
+      --soft: #e8f5f2;
+      --warning: #fff7e6;
+      --warning-border: #f3c56b;
+      --border: #dfe8e5;
+      --shadow: 0 10px 28px rgba(25, 55, 48, .08);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, "Noto Sans Lao", "Phetsarath OT", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    body[data-lang="lo"] { font-family: "Noto Sans Lao", "Phetsarath OT", Inter, ui-sans-serif, system-ui, sans-serif; }
+    a { color: inherit; }
+    .wrap { width: min(960px, calc(100% - 28px)); margin: 0 auto; }
+
+    header {
+      background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
+      color: #fff;
+      padding: 22px 0 34px;
+    }
+
+    .topbar { display:flex; justify-content:flex-end; margin-bottom:14px; }
+    .lang-switch {
+      display:inline-flex;
+      gap:4px;
+      padding:4px;
+      border-radius:999px;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(8px);
+    }
+    .lang-btn {
+      border:0;
+      background:transparent;
+      color:#fff;
+      cursor:pointer;
+      border-radius:999px;
+      padding:8px 13px;
+      font:inherit;
+      font-weight:800;
+      opacity:.78;
+    }
+    .lang-btn.active { background:#fff; color:var(--brand-dark); opacity:1; }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .85;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    body[data-lang="lo"] .eyebrow { text-transform:none; letter-spacing:0; }
+
+    h1 { margin: 0; font-size: clamp(28px, 5vw, 46px); line-height: 1.1; }
+    .lead { margin: 12px 0 0; max-width: 720px; opacity: .92; }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,.28);
+      background: #fff;
+      color: var(--brand-dark);
+    }
+    .btn.secondary { background: rgba(255,255,255,.12); color: #fff; }
+
+    main { padding: 22px 0 44px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .card h2 { margin: 0 0 12px; font-size: 20px; }
+    .card p { margin: 0; color: var(--muted); }
+
+    .metric {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .metric:last-child { border-bottom: 0; padding-bottom: 0; }
+    .icon {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      display: grid;
+      place-items: center;
+      background: var(--soft);
+      border-radius: 12px;
+      font-size: 20px;
+    }
+    .metric strong { display: block; font-size: 18px; }
+    .metric small { color: var(--muted); }
+
+    .full { grid-column: 1 / -1; }
+    .steps { margin: 0; padding-left: 20px; }
+    body[data-lang="lo"] .steps { padding-left: 24px; }
+    .steps li { margin: 8px 0; }
+
+    .notice {
+      background: var(--warning);
+      border: 1px solid var(--warning-border);
+      box-shadow: none;
+    }
+
+    .hospital-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .hospital {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fbfdfc;
+    }
+    .hospital strong { display: block; }
+    .hospital span { font-size: 13px; color: var(--muted); }
+
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .link-row a {
+      text-decoration: none;
+      color: var(--brand-dark);
+      background: var(--soft);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight: 750;
+    }
+
+    footer { padding: 0 0 36px; color: var(--muted); font-size: 13px; }
+
+    @media (max-width: 720px) {
+      .grid { grid-template-columns: 1fr; }
+      .full { grid-column: auto; }
+      .hospital-list { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 440px) {
+      .actions { grid-template-columns: 1fr; }
+      .wrap { width: min(100% - 20px, 960px); }
+      .card { padding: 16px; border-radius: 16px; }
+      header { padding-top: 16px; }
+    }
+  
+    html[lang="lo"] body,
+    html[lang="lo"] button,
+    html[lang="lo"] a,
+    html[lang="lo"] input,
+    html[lang="lo"] select,
+    html[lang="lo"] textarea {
+      font-family: "Noto Sans Lao", sans-serif !important;
+    }
+
+  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-lang="en">
+  <header>
+    <div class="wrap">
+      <div class="topbar" aria-label="Language selector">
+        <div class="lang-switch">
+          <button class="lang-btn active" data-set-lang="en" type="button">EN</button>
+          <button class="lang-btn" data-set-lang="lo" type="button">ລາວ</button>
+        </div>
+      </div>
+      <div class="eyebrow" data-i18n="eyebrow">Personal insurance quick guide</div>
+      <h1>APA Happy 5</h1>
+      <p class="lead" data-i18n="lead">A simple mobile-friendly reference for common coverage limits, cashless use, emergencies, and network hospitals.</p>
+      <div class="actions">
+        <a class="btn" href="tel:1677">📞 <span data-i18n="callApa">Call APA 1677</span></a>
+        <a class="btn secondary" href="https://apa.com.la/hospital-locator/" target="_blank" rel="noopener">📍 <span data-i18n="findHospital">Find Network Hospital</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="grid">
+      <section class="card">
+        <h2 data-i18n="keyCoverage">💰 Key coverage</h2>
+        <div class="metric"><div class="icon">🩺</div><div><strong>606,000 LAK</strong><small data-i18n="opd">Normal OPD per visit · max 1 visit/day · 30 visits/year</small></div></div>
+        <div class="metric"><div class="icon">🚑</div><div><strong>2,163,000 LAK</strong><small data-i18n="accidentOpd">Emergency outpatient treatment after an accident</small></div></div>
+        <div class="metric"><div class="icon">🏥</div><div><strong>140,862,000 LAK</strong><small data-i18n="ipd">Maximum IPD / hospitalization per illness or accident, subject to sub-limits</small></div></div>
+        <div class="metric"><div class="icon">🛏️</div><div><strong>865,000 LAK/day</strong><small data-i18n="room">Room & board · up to 90 days</small></div></div>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="hospitalTreatment">🏥 Hospital treatment</h2>
+        <div class="metric"><div class="icon">🚨</div><div><strong>1,730,000 LAK/day</strong><small data-i18n="icu">ICU · up to 7 days</small></div></div>
+        <div class="metric"><div class="icon">🧾</div><div><strong>8,650,000 LAK</strong><small data-i18n="generalExpenses">General hospital expenses</small></div></div>
+        <div class="metric"><div class="icon">👨‍⚕️</div><div><strong>21,625,000 LAK</strong><small data-i18n="surgeonFee">Surgeon fee</small></div></div>
+        <div class="metric"><div class="icon">🩻</div><div><strong>754,000 LAK</strong><small data-i18n="xray">X-ray / laboratory diagnosis</small></div></div>
+        <div class="metric"><div class="icon">🚐</div><div><strong>410,000 LAK</strong><small data-i18n="ambulance">Ambulance</small></div></div>
+      </section>
+
+      <section class="card full">
+        <h2 data-i18n="cashlessTitle">💳 How cashless treatment works</h2>
+        <ol class="steps">
+          <li data-i18n="cashless1">Go to an APA network hospital or clinic.</li>
+          <li><span data-i18n="cashless2a">Tell reception:</span> <strong data-i18n="cashlessQuote">“I have APA Health Insurance and would like to use cashless treatment.”</strong></li>
+          <li data-i18n="cashless3">Show your APA insurance card/policy information and ID.</li>
+          <li data-i18n="cashless4">The facility checks your eligibility with APA.</li>
+          <li data-i18n="cashless5">APA pays eligible covered costs directly up to your policy limits. You pay excluded or excess amounts.</li>
+        </ol>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="normalSickness">🤒 Normal sickness</h2>
+        <p data-i18n="normalSicknessText">For fever, flu, sore throat, stomach problems, headache, minor infection, and similar issues, start with an APA network clinic or hospital and ask for cashless service.</p>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="accidentTitle">🛵 Accident</h2>
+        <p data-i18n="accidentText">For minor accident treatment without admission, your emergency OPD accident limit applies. For serious injury, head injury, severe bleeding, breathing difficulty, or suspected fracture, seek emergency care first.</p>
+      </section>
+
+      <section class="card full">
+        <h2 data-i18n="facilitiesTitle">📍 Useful Vientiane network facilities</h2>
+        <p data-i18n="facilitiesText">These are useful places to remember. Confirm current cashless eligibility for your treatment before planned care.</p>
+        <div class="hospital-list">
+          <div class="hospital"><strong>Alliance International Medical Centre</strong><span data-i18n="allianceDesc">Private / general care · 24-hour option</span></div>
+          <div class="hospital"><strong>French Medical Centre</strong><span data-i18n="frenchDesc">Useful for routine outpatient care</span></div>
+          <div class="hospital"><strong>Setthathirath Hospital</strong><span data-i18n="setthaDesc">Hospital / emergency care</span></div>
+        </div>
+        <div class="link-row">
+          <a href="https://apa.com.la/hospital-locator/" target="_blank" rel="noopener" data-i18n="openLocator">Open APA Hospital Locator ↗</a>
+          <a href="https://apa.com.la/health-insurance/" target="_blank" rel="noopener" data-i18n="healthInfo">APA Health Insurance Info ↗</a>
+        </div>
+      </section>
+
+      <section class="card full notice">
+        <h2 data-i18n="importantTitle">⚠️ Important</h2>
+        <p><strong data-i18n="importantStrong">Network hospital does not mean everything is free.</strong> <span data-i18n="importantText">Cashless treatment applies only to eligible treatment within your policy terms and limits. Some care may require approval, may exceed a sub-limit, or may not be covered.</span></p>
+      </section>
+
+      <section class="card full">
+        <h2 data-i18n="bringTitle">🎒 What to bring</h2>
+        <p data-i18n="bringText">APA insurance card/policy information · ID/passport · phone · some backup money in case part of the treatment is not covered.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="wrap">
+    <strong data-i18n="footerTitle">APA Happy 5 quick guide</strong><br />
+    <span data-i18n="footerText">Coverage values are summarized from the issued policy schedule. This page intentionally excludes personal policy numbers, ID details, signatures, and other private information. For final eligibility or claim approval, confirm with APA. Last updated: 22 Sep 2026.</span>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        eyebrow: 'Personal insurance quick guide',
+        lead: 'A simple mobile-friendly reference for common coverage limits, cashless use, emergencies, and network hospitals.',
+        callApa: 'Call APA 1677', findHospital: 'Find Network Hospital', keyCoverage: '💰 Key coverage',
+        opd: 'Normal OPD per visit · max 1 visit/day · 30 visits/year',
+        accidentOpd: 'Emergency outpatient treatment after an accident',
+        ipd: 'Maximum IPD / hospitalization per illness or accident, subject to sub-limits',
+        room: 'Room & board · up to 90 days', hospitalTreatment: '🏥 Hospital treatment',
+        icu: 'ICU · up to 7 days', generalExpenses: 'General hospital expenses', surgeonFee: 'Surgeon fee',
+        xray: 'X-ray / laboratory diagnosis', ambulance: 'Ambulance', cashlessTitle: '💳 How cashless treatment works',
+        cashless1: 'Go to an APA network hospital or clinic.', cashless2a: 'Tell reception:',
+        cashlessQuote: '“I have APA Health Insurance and would like to use cashless treatment.”',
+        cashless3: 'Show your APA insurance card/policy information and ID.',
+        cashless4: 'The facility checks your eligibility with APA.',
+        cashless5: 'APA pays eligible covered costs directly up to your policy limits. You pay excluded or excess amounts.',
+        normalSickness: '🤒 Normal sickness',
+        normalSicknessText: 'For fever, flu, sore throat, stomach problems, headache, minor infection, and similar issues, start with an APA network clinic or hospital and ask for cashless service.',
+        accidentTitle: '🛵 Accident',
+        accidentText: 'For minor accident treatment without admission, your emergency OPD accident limit applies. For serious injury, head injury, severe bleeding, breathing difficulty, or suspected fracture, seek emergency care first.',
+        facilitiesTitle: '📍 Useful Vientiane network facilities',
+        facilitiesText: 'These are useful places to remember. Confirm current cashless eligibility for your treatment before planned care.',
+        allianceDesc: 'Private / general care · 24-hour option', frenchDesc: 'Useful for routine outpatient care', setthaDesc: 'Hospital / emergency care',
+        openLocator: 'Open APA Hospital Locator ↗', healthInfo: 'APA Health Insurance Info ↗',
+        importantTitle: '⚠️ Important', importantStrong: 'Network hospital does not mean everything is free.',
+        importantText: 'Cashless treatment applies only to eligible treatment within your policy terms and limits. Some care may require approval, may exceed a sub-limit, or may not be covered.',
+        bringTitle: '🎒 What to bring', bringText: 'APA insurance card/policy information · ID/passport · phone · some backup money in case part of the treatment is not covered.',
+        footerTitle: 'APA Happy 5 quick guide',
+        footerText: 'Coverage values are summarized from the issued policy schedule. This page intentionally excludes personal policy numbers, ID details, signatures, and other private information. For final eligibility or claim approval, confirm with APA. Last updated: 22 Sep 2026.'
+      },
+      lo: {
+        eyebrow: 'ຄູ່ມືປະກັນໄພສຸຂະພາບແບບຫຍໍ້',
+        lead: 'ຄູ່ມືສັ້ນໆ ໃຊ້ງ່າຍໃນມືຖື ສຳລັບວົງເງິນຄຸ້ມຄອງ, ການຮັກສາແບບບໍ່ຕ້ອງສຳຮອງຈ່າຍ, ເຫດສຸກເສີນ ແລະ ໂຮງໝໍໃນເຄືອຂ່າຍ.',
+        callApa: 'ໂທຫາ APA 1677', findHospital: 'ຄົ້ນຫາໂຮງໝໍໃນເຄືອຂ່າຍ', keyCoverage: '💰 ວົງເງິນຄຸ້ມຄອງຫຼັກ',
+        opd: 'OPD ທົ່ວໄປ ຕໍ່ຄັ້ງ · ສູງສຸດ 1 ຄັ້ງ/ມື້ · 30 ຄັ້ງ/ປີ',
+        accidentOpd: 'ຮັກສາສຸກເສີນແບບບໍ່ນອນໂຮງໝໍ ຫຼັງເກີດອຸບັດເຫດ',
+        ipd: 'ວົງເງິນສູງສຸດສຳລັບ IPD / ນອນໂຮງໝໍ ຕໍ່ພະຍາດ ຫຼື ອຸບັດເຫດ ໂດຍຂຶ້ນກັບວົງເງິນຍ່ອຍ',
+        room: 'ຄ່າຫ້ອງ ແລະ ອາຫານ · ສູງສຸດ 90 ມື້', hospitalTreatment: '🏥 ການຮັກສາໃນໂຮງໝໍ',
+        icu: 'ICU · ສູງສຸດ 7 ມື້', generalExpenses: 'ຄ່າໃຊ້ຈ່າຍທົ່ວໄປໃນໂຮງໝໍ', surgeonFee: 'ຄ່າແພດຜ່າຕັດ',
+        xray: 'X-ray / ການກວດຫ້ອງປະລິກ', ambulance: 'ລົດສຸກເສີນ', cashlessTitle: '💳 ການຮັກສາແບບ Cashless ເຮັດວຽກແນວໃດ',
+        cashless1: 'ໄປໂຮງໝໍ ຫຼື ຄລີນິກໃນເຄືອຂ່າຍ APA.', cashless2a: 'ແຈ້ງພະນັກງານຕ້ອນຮັບວ່າ:',
+        cashlessQuote: '“ຂ້ອຍມີປະກັນສຸຂະພາບ APA ແລະ ຕ້ອງການໃຊ້ບໍລິການ Cashless.”',
+        cashless3: 'ສະແດງບັດປະກັນ/ຂໍ້ມູນກົມປະກັນ APA ແລະ ບັດປະຈຳຕົວ.',
+        cashless4: 'ໂຮງໝໍ ຫຼື ຄລີນິກຈະກວດສອບສິດກັບ APA.',
+        cashless5: 'APA ຈ່າຍຄ່າຮັກສາທີ່ຄຸ້ມຄອງໃຫ້ໂຮງໝໍໂດຍກົງ ພາຍໃນວົງເງິນຂອງກົມປະກັນ. ສ່ວນທີ່ບໍ່ຄຸ້ມຄອງ ຫຼື ເກີນວົງເງິນ ທ່ານຕ້ອງຈ່າຍເອງ.',
+        normalSickness: '🤒 ເຈັບປ່ວຍທົ່ວໄປ',
+        normalSicknessText: 'ສຳລັບໄຂ້, ໄຂ້ຫວັດ, ເຈັບຄໍ, ບັນຫາກະເພາະອາຫານ, ເຈັບຫົວ, ການຕິດເຊື້ອເບົາໆ ແລະ ອາການຄ້າຍກັນ ໃຫ້ເລີ່ມທີ່ຄລີນິກ ຫຼື ໂຮງໝໍໃນເຄືອຂ່າຍ APA ແລະ ແຈ້ງຂໍໃຊ້ Cashless.',
+        accidentTitle: '🛵 ອຸບັດເຫດ',
+        accidentText: 'ຖ້າເປັນອຸບັດເຫດເບົາໆ ແລະ ບໍ່ຕ້ອງນອນໂຮງໝໍ ໃຫ້ໃຊ້ວົງເງິນ OPD ສຸກເສີນຈາກອຸບັດເຫດ. ຖ້າບາດເຈັບໜັກ, ບາດເຈັບຫົວ, ເລືອດອອກຫຼາຍ, ຫາຍໃຈລຳບາກ ຫຼື ສົງໄສກະດູກຫັກ ໃຫ້ໄປຮັບການຮັກສາສຸກເສີນກ່ອນ.',
+        facilitiesTitle: '📍 ສະຖານພະຍາບານໃນເຄືອຂ່າຍທີ່ຄວນຈື່ໃນວຽງຈັນ',
+        facilitiesText: 'ເຫຼົ່ານີ້ແມ່ນສະຖານທີ່ທີ່ຄວນຈື່ໄວ້. ສຳລັບການຮັກສາທີ່ວາງແຜນລ່ວງໜ້າ ຄວນຢືນຢັນສິດ Cashless ກ່ອນ.',
+        allianceDesc: 'ເອກະຊົນ / ການຮັກສາທົ່ວໄປ · ທາງເລືອກ 24 ຊົ່ວໂມງ', frenchDesc: 'ເໝາະສຳລັບ OPD ທົ່ວໄປ', setthaDesc: 'ໂຮງໝໍ / ການຮັກສາສຸກເສີນ',
+        openLocator: 'ເປີດ APA Hospital Locator ↗', healthInfo: 'ຂໍ້ມູນປະກັນສຸຂະພາບ APA ↗',
+        importantTitle: '⚠️ ສຳຄັນ', importantStrong: 'ໂຮງໝໍໃນເຄືອຂ່າຍ ບໍ່ໄດ້ໝາຍຄວາມວ່າທຸກຢ່າງຟຣີ.',
+        importantText: 'Cashless ໃຊ້ໄດ້ສະເພາະການຮັກສາທີ່ຢູ່ໃນເງື່ອນໄຂ ແລະ ວົງເງິນຂອງກົມປະກັນ. ບາງການຮັກສາອາດຕ້ອງຂໍອະນຸມັດ, ອາດເກີນວົງເງິນຍ່ອຍ ຫຼື ອາດບໍ່ຄຸ້ມຄອງ.',
+        bringTitle: '🎒 ຄວນນຳຫຍັງໄປ', bringText: 'ບັດປະກັນ/ຂໍ້ມູນກົມປະກັນ APA · ບັດປະຈຳຕົວ/Passport · ໂທລະສັບ · ເງິນສຳຮອງເລັກນ້ອຍ ໃນກໍລະນີມີບາງສ່ວນບໍ່ຄຸ້ມຄອງ.',
+        footerTitle: 'ຄູ່ມື APA Happy 5 ແບບຫຍໍ້',
+        footerText: 'ວົງເງິນຄຸ້ມຄອງໃນໜ້ານີ້ສະຫຼຸບຈາກ Policy Schedule ທີ່ອອກໃຫ້. ໜ້ານີ້ຈົ່ງໃຈບໍ່ສະແດງເລກກົມປະກັນ, ຂໍ້ມູນບັດປະຈຳຕົວ, ລາຍເຊັນ ແລະ ຂໍ້ມູນສ່ວນຕົວອື່ນໆ. ສຳລັບການຢືນຢັນສິດ ຫຼື ການອະນຸມັດເຄລມ ໃຫ້ຢືນຢັນກັບ APA. ອັບເດດລ່າສຸດ: 22 ກັນຍາ 2026.'
+      }
+    };
+
+    function setLanguage(lang) {
+      if (!translations[lang]) return;
+      document.body.dataset.lang = lang;
+      document.documentElement.lang = lang === 'lo' ? 'lo' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang][key]) el.textContent = translations[lang][key];
+      });
+      document.querySelectorAll('[data-set-lang]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.setLang === lang);
+      });
+      localStorage.setItem('apaHappy5Lang', lang);
+    }
+
+    document.querySelectorAll('[data-set-lang]').forEach(btn => {
+      btn.addEventListener('click', () => setLanguage(btn.dataset.setLang));
+    });
+
+    const savedLang = localStorage.getItem('apaHappy5Lang');
+    const browserLang = navigator.language && navigator.language.toLowerCase().startsWith('lo') ? 'lo' : 'en';
+    setLanguage(savedLang || browserLang);
+  </script>
+</body>
+</html>
