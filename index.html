@@ -6,6 +6,13 @@
   <meta name="theme-color" content="#0f766e" />
   <meta name="description" content="A mobile-friendly bilingual English and Lao quick guide for APA Happy 5 health insurance coverage." />
   <title>APA Happy 5 — Insurance Quick Guide</title>
+
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Happy 5" />
+
   <style>
     :root {
       --bg: #f6f8f7;
@@ -204,6 +211,90 @@
       font-family: "Noto Sans Lao", sans-serif !important;
     }
 
+  
+    .flow-visual {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .flow-visual-copy {
+      padding: 18px 18px 14px;
+    }
+
+    .flow-visual-copy h2 {
+      margin-bottom: 8px;
+    }
+
+    .flow-visual-copy p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .flow-image-wrap {
+      background: #eef7fb;
+      border-top: 1px solid var(--border);
+      padding: 12px;
+    }
+
+    .flow-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid #d9e9ef;
+      box-shadow: 0 8px 24px rgba(18, 56, 78, .08);
+    }
+
+    .flow-image-link {
+      display: block;
+      text-decoration: none;
+    }
+
+    .flow-hint {
+      margin-top: 10px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+  
+    .install-card {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 14px 0 0;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #ffffff;
+      border: 1px solid rgba(255,255,255,.45);
+      color: var(--text);
+      box-shadow: var(--shadow);
+    }
+    .install-card.show { display: flex; }
+    .install-copy { min-width: 0; }
+    .install-copy strong { display: block; margin-bottom: 2px; }
+    .install-copy small { color: var(--muted); }
+    .install-btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: var(--brand);
+      color: #fff;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .install-btn.secondary {
+      background: var(--soft);
+      color: var(--brand-dark);
+    }
+    @media (max-width: 560px) {
+      .install-card { align-items: flex-start; flex-direction: column; }
+      .install-btn { width: 100%; }
+    }
+
   </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -224,6 +315,14 @@
       <div class="actions">
         <a class="btn" href="tel:1677">📞 <span data-i18n="callApa">Call APA 1677</span></a>
         <a class="btn secondary" href="https://apa.com.la/hospital-locator/" target="_blank" rel="noopener">📍 <span data-i18n="findHospital">Find Network Hospital</span></a>
+      </div>
+
+      <div id="installCard" class="install-card" aria-live="polite">
+        <div class="install-copy">
+          <strong data-i18n="installTitle">Add this guide to your Home Screen</strong>
+          <small id="installHelp" data-i18n="installHelp">Open it like a small app anytime.</small>
+        </div>
+        <button id="installBtn" class="install-btn" type="button" data-i18n="installButton">Add to Home Screen</button>
       </div>
     </div>
   </header>
@@ -257,6 +356,25 @@
           <li data-i18n="cashless5">APA pays eligible covered costs directly up to your policy limits. You pay excluded or excess amounts.</li>
         </ol>
       </section>
+
+      <section class="card full flow-visual">
+        <div class="flow-visual-copy">
+          <h2 data-i18n="flowVisualTitle">🧭 Insurance use flow</h2>
+          <p data-i18n="flowVisualText">A visual guide showing the two main paths: cashless treatment at an APA network facility, or pay first and submit a claim when cashless service is not available.</p>
+        </div>
+        <div class="flow-image-wrap">
+          <a class="flow-image-link" href="assets/happy_5_insurance_guide.png" target="_blank" rel="noopener">
+            <img
+              class="flow-image"
+              src="assets/happy_5_insurance_guide.png"
+              alt="APA Happy 5 insurance use flow showing cashless treatment and reimbursement claim steps"
+              loading="lazy"
+            />
+          </a>
+          <div class="flow-hint" data-i18n="flowVisualHint">Tap the image to open it full size.</div>
+        </div>
+      </section>
+
 
       <section class="card">
         <h2 data-i18n="normalSickness">🤒 Normal sickness</h2>
@@ -305,6 +423,9 @@
         eyebrow: 'Personal insurance quick guide',
         lead: 'A simple mobile-friendly reference for common coverage limits, cashless use, emergencies, and network hospitals.',
         callApa: 'Call APA 1677', findHospital: 'Find Network Hospital', keyCoverage: '💰 Key coverage',
+        installTitle: 'Add this guide to your Home Screen',
+        installHelp: 'Open it like a small app anytime.',
+        installButton: 'Add to Home Screen',
         opd: 'Normal OPD per visit · max 1 visit/day · 30 visits/year',
         accidentOpd: 'Emergency outpatient treatment after an accident',
         ipd: 'Maximum IPD / hospitalization per illness or accident, subject to sub-limits',
@@ -316,6 +437,9 @@
         cashless3: 'Show your APA insurance card/policy information and ID.',
         cashless4: 'The facility checks your eligibility with APA.',
         cashless5: 'APA pays eligible covered costs directly up to your policy limits. You pay excluded or excess amounts.',
+        flowVisualTitle: '🧭 Insurance use flow',
+        flowVisualText: 'A visual guide showing the two main paths: cashless treatment at an APA network facility, or pay first and submit a claim when cashless service is not available.',
+        flowVisualHint: 'Tap the image to open it full size.',
         normalSickness: '🤒 Normal sickness',
         normalSicknessText: 'For fever, flu, sore throat, stomach problems, headache, minor infection, and similar issues, start with an APA network clinic or hospital and ask for cashless service.',
         accidentTitle: '🛵 Accident',
@@ -334,6 +458,9 @@
         eyebrow: 'ຄູ່ມືປະກັນໄພສຸຂະພາບແບບຫຍໍ້',
         lead: 'ຄູ່ມືສັ້ນໆ ໃຊ້ງ່າຍໃນມືຖື ສຳລັບວົງເງິນຄຸ້ມຄອງ, ການຮັກສາແບບບໍ່ຕ້ອງສຳຮອງຈ່າຍ, ເຫດສຸກເສີນ ແລະ ໂຮງໝໍໃນເຄືອຂ່າຍ.',
         callApa: 'ໂທຫາ APA 1677', findHospital: 'ຄົ້ນຫາໂຮງໝໍໃນເຄືອຂ່າຍ', keyCoverage: '💰 ວົງເງິນຄຸ້ມຄອງຫຼັກ',
+        installTitle: 'ເພີ່ມຄູ່ມືນີ້ໄວ້ໜ້າ Home Screen',
+        installHelp: 'ເປີດໃຊ້ໄດ້ຄືກັບແອັບນ້ອຍໆ ໄດ້ທຸກເວລາ.',
+        installButton: 'ເພີ່ມໄປ Home Screen',
         opd: 'OPD ທົ່ວໄປ ຕໍ່ຄັ້ງ · ສູງສຸດ 1 ຄັ້ງ/ມື້ · 30 ຄັ້ງ/ປີ',
         accidentOpd: 'ຮັກສາສຸກເສີນແບບບໍ່ນອນໂຮງໝໍ ຫຼັງເກີດອຸບັດເຫດ',
         ipd: 'ວົງເງິນສູງສຸດສຳລັບ IPD / ນອນໂຮງໝໍ ຕໍ່ພະຍາດ ຫຼື ອຸບັດເຫດ ໂດຍຂຶ້ນກັບວົງເງິນຍ່ອຍ',
@@ -345,6 +472,9 @@
         cashless3: 'ສະແດງບັດປະກັນ/ຂໍ້ມູນກົມປະກັນ APA ແລະ ບັດປະຈຳຕົວ.',
         cashless4: 'ໂຮງໝໍ ຫຼື ຄລີນິກຈະກວດສອບສິດກັບ APA.',
         cashless5: 'APA ຈ່າຍຄ່າຮັກສາທີ່ຄຸ້ມຄອງໃຫ້ໂຮງໝໍໂດຍກົງ ພາຍໃນວົງເງິນຂອງກົມປະກັນ. ສ່ວນທີ່ບໍ່ຄຸ້ມຄອງ ຫຼື ເກີນວົງເງິນ ທ່ານຕ້ອງຈ່າຍເອງ.',
+        flowVisualTitle: '🧭 ຂັ້ນຕອນການໃຊ້ປະກັນໄພ',
+        flowVisualText: 'ຮູບພາບສະຫຼຸບ 2 ແນວທາງຫຼັກ: ໃຊ້ Cashless ທີ່ໂຮງໝໍ/ຄລີນິກໃນເຄືອຂ່າຍ APA ຫຼື ຈ່າຍກ່ອນແລ້ວຍື່ນເຄລມ ເມື່ອບໍ່ສາມາດໃຊ້ Cashless ໄດ້.',
+        flowVisualHint: 'ແຕະທີ່ຮູບເພື່ອເປີດເບິ່ງຂະໜາດເຕັມ.',
         normalSickness: '🤒 ເຈັບປ່ວຍທົ່ວໄປ',
         normalSicknessText: 'ສຳລັບໄຂ້, ໄຂ້ຫວັດ, ເຈັບຄໍ, ບັນຫາກະເພາະອາຫານ, ເຈັບຫົວ, ການຕິດເຊື້ອເບົາໆ ແລະ ອາການຄ້າຍກັນ ໃຫ້ເລີ່ມທີ່ຄລີນິກ ຫຼື ໂຮງໝໍໃນເຄືອຂ່າຍ APA ແລະ ແຈ້ງຂໍໃຊ້ Cashless.',
         accidentTitle: '🛵 ອຸບັດເຫດ',
@@ -382,6 +512,62 @@
     const savedLang = localStorage.getItem('apaHappy5Lang');
     const browserLang = navigator.language && navigator.language.toLowerCase().startsWith('lo') ? 'lo' : 'en';
     setLanguage(savedLang || browserLang);
+
+    // PWA / Add to Home Screen support
+    let deferredInstallPrompt = null;
+    const installCard = document.getElementById('installCard');
+    const installBtn = document.getElementById('installBtn');
+    const installHelp = document.getElementById('installHelp');
+
+    const isStandalone =
+      window.matchMedia('(display-mode: standalone)').matches ||
+      window.navigator.standalone === true;
+
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
+    if (!isStandalone && isIOS) {
+      installCard?.classList.add('show');
+      if (installHelp) {
+        installHelp.textContent = document.body.dataset.lang === 'lo'
+          ? 'iPhone/iPad: ແຕະ Share ແລ້ວເລືອກ “Add to Home Screen”.'
+          : 'iPhone/iPad: tap Share, then choose “Add to Home Screen”.';
+      }
+      if (installBtn) {
+        installBtn.textContent = document.body.dataset.lang === 'lo' ? 'ວິທີເພີ່ມ' : 'How to add';
+        installBtn.classList.add('secondary');
+        installBtn.addEventListener('click', () => {
+          alert(document.body.dataset.lang === 'lo'
+            ? 'ໃນ Safari: ແຕະປຸ່ມ Share → ເລືອກ Add to Home Screen → ແຕະ Add.'
+            : 'In Safari: tap Share → Add to Home Screen → Add.');
+        });
+      }
+    }
+
+    window.addEventListener('beforeinstallprompt', event => {
+      event.preventDefault();
+      deferredInstallPrompt = event;
+      if (!isStandalone) installCard?.classList.add('show');
+    });
+
+    installBtn?.addEventListener('click', async () => {
+      if (!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+      installCard?.classList.remove('show');
+    });
+
+    window.addEventListener('appinstalled', () => {
+      deferredInstallPrompt = null;
+      installCard?.classList.remove('show');
+    });
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+
   </script>
 </body>
 </html>
